@@ -50,7 +50,7 @@ function getLogin(formData){
                     localStorage.setItem("mobileNumber", data.result.userMobile);
                     localStorage.setItem("userId", data.result.userId);
                     localStorage.setItem("mail",data.result.userEmail);
-                    window.open("../admin/pages/dashboard.html","_self");
+                    window.open("/admin/pages/dashboard.html","_self");
                     clearData();
                 }else{
                     swal("Error",data.errorMessage, "error");
