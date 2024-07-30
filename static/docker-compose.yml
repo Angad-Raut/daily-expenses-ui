@@ -1,0 +1,9 @@
+version: '1'
+services:
+  web:
+    image: daily-expenses-ui
+    build: .
+    container_name: daily-expenses-web-app
+    restart: always
+    ports:
+      - "8082:80"
