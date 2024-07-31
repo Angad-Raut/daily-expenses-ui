@@ -12,7 +12,6 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-secret', url: 'https://github.com/Angad-Raut/daily-expenses-ui.git']])
-                bat 'mvn clean install'
                 echo 'Git Checkout Completed'
             }
         }
