@@ -51,7 +51,7 @@ function getLogin(formData){
                     localStorage.setItem("userId", data.result.userId);
                     localStorage.setItem("mail",data.result.userEmail);
                    // window.open("../../admin/pages/dashboard.html","_self");
-                    window.location.replace("http://localhost:8082/admin/pages/dashboard.html");
+                    window.location.replace("http://localhost:8082/static/admin/pages/dashboard.html");
                     clearData();
                 }else{
                     swal("Error",data.errorMessage, "error");
