@@ -12,13 +12,11 @@ $(document).ready(function(){
 function setAllConfiguration() {
     $('#from_date_txt').datepicker({
         format: 'dd MM yyyy',
-        endDate: '0d',
-        minDate: new Date()
+        endDate: '0d'
     });
     $('#to_date_txt').datepicker({
          format: 'dd MM yyyy',
-         startDate: '0d',
-         maxDate: new Date()
+         startDate: '0d'
     });
     var table = $('#reportTableId').DataTable();
        table.clear().draw();
@@ -57,7 +55,9 @@ $("#search_txt").click(function(){
         flag=1;
         return false;
     }
-    getAllExpensesPagesWithDateRangeForReport(startDate,endDate);
+    if (flag==0) {
+        getAllExpensesPagesWithDateRangeForReport(startDate,endDate);
+    }
 });
 
 $("#download_txt").click(function(){
@@ -84,8 +84,10 @@ $("#download_txt").click(function(){
         flag=1;
         return false;
     }
-    var formData = {startDate:startDate,endDate:endDate};
-    generateReportWithDateRange(formData);
+    if (flag==0) {
+        var formData = {startDate:startDate,endDate:endDate};
+        generateReportWithDateRange(formData);
+    }
 });
 
 function getAllExpensesPagesWithDateRangeForReport(startDate,endDate){
@@ -169,12 +171,10 @@ function generateReportWithDateRange(formData) {
        		data : JSON.stringify(formData),
        		success : function(data) {
        			if(data.result!=null){
-       			    if (data.result!=null) {
-                        var link = document.createElement('a');
-                        link.href = "data:application/pdf;base64,"+data.result;
-                        link.download = 'ExpenseReport('+formData.startDate+'-'+formData.endDate+').pdf';
-                        link.dispatchEvent(new MouseEvent('click'));
-       				}
+                    var link = document.createElement('a');
+                    link.href = "data:application/pdf;base64,"+data.result;
+                    link.download = 'ExpenseReport('+formData.startDate+'-'+formData.endDate+').pdf';
+                    link.dispatchEvent(new MouseEvent('click'));
        			}else{
        			    swal("Error",data.errorMessage, "error");
        			}
@@ -195,12 +195,10 @@ function generateReportWithDateRange(formData) {
         		data : JSON.stringify(formData),
         		success : function(data) {
         			if(data.result!=null){
-        			    if (data.result!=null) {
-                         var link = document.createElement('a');
-                         link.href = "data:application/pdf;base64,"+data.result;
-                         link.download = 'ExpenseReport('+expenseDate+').pdf';
-                         link.dispatchEvent(new MouseEvent('click'));
-        				}
+                        var link = document.createElement('a');
+                        link.href = "data:application/pdf;base64,"+data.result;
+                        link.download = 'ExpenseReport('+expenseDate+').pdf';
+                        link.dispatchEvent(new MouseEvent('click'));
         			}else{
         			    swal("Error",data.errorMessage, "error");
         			}

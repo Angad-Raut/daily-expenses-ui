@@ -37,7 +37,9 @@ $("#search_txt").click(function(){
         flag=1;
         return false;
     }
-    getMonthlyExpensesReportPages(month);
+    if (flag==0) {
+        getMonthlyExpensesReportPages(month);
+    }
 });
 
 $("#download_txt").click(function(){
@@ -48,8 +50,10 @@ $("#download_txt").click(function(){
         flag=1;
         return false;
     }
-    var formData = {monthName:month};
-    generateMonthReport(formData);
+    if (flag==0){
+        var formData = {monthName:month};
+        generateMonthReport(formData);
+    }
 });
 
 function getMonthlyExpensesReportPages(monthName){
@@ -111,7 +115,7 @@ function getMonthlyExpensesReportPages(monthName){
                 }, {
                     mDataProp : function(data){
                           return '<button class="btn bg-primary btn-xs" type="button" data-toggle="modal" data-target="#viewItemModal" onclick="getExpenseItems('+data.expenseId+')"><b>View</b></button>&nbsp;&nbsp;'+
-                                  '<button class="btn bg-primary btn-xs" type="button" onclick="generateReportByExpenseId('+data.expenseId+','+data.expenseDate+')"><b>Download</b></button>';
+                                 '<button class="btn bg-primary btn-xs" type="button" onclick="generateReportByExpenseId('+data.expenseId+','+data.expenseDate+')"><b>Download</b></button>';
                     },
                     "bSortable": false
                 }],
@@ -133,12 +137,10 @@ function generateMonthReport(formData) {
        		data : JSON.stringify(formData),
        		success : function(data) {
        			if(data.result!=null){
-       			    if (data.result!=null) {
-                        var link = document.createElement('a');
-                        link.href = "data:application/pdf;base64,"+data.result;
-                        link.download = formData.monthName+' ExpenseReport.pdf';
-                        link.dispatchEvent(new MouseEvent('click'));
-       				}
+                    var link = document.createElement('a');
+                    link.href = "data:application/pdf;base64,"+data.result;
+                    link.download = formData.monthName+' ExpenseReport.pdf';
+                    link.dispatchEvent(new MouseEvent('click'));
        			}else{
        			    swal("Error",data.errorMessage, "error");
        			}
@@ -159,12 +161,10 @@ function generateMonthReport(formData) {
         		data : JSON.stringify(formData),
         		success : function(data) {
         			if(data.result!=null){
-        			    if (data.result!=null) {
-                         var link = document.createElement('a');
-                         link.href = "data:application/pdf;base64,"+data.result;
-                         link.download = 'ExpenseReport('+expenseDate+').pdf';
-                         link.dispatchEvent(new MouseEvent('click'));
-        				}
+                        var link = document.createElement('a');
+                        link.href = "data:application/pdf;base64,"+data.result;
+                        link.download = 'ExpenseReport('+expenseDate+').pdf';
+                        link.dispatchEvent(new MouseEvent('click'));
         			}else{
         			    swal("Error",data.errorMessage, "error");
         			}
