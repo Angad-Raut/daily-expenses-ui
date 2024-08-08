@@ -40,10 +40,10 @@
                             <i class="fa fa-user fa-fw"></i><b>Angad Raut</b><b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li class="active"><a href="../../admin/pages/profileDetails.html"><i class="fa fa-user fa-fw"></i><b>Profile</b></a></li>
+                            <li><a href="../../admin/pages/profileDetails.html"><i class="fa fa-user fa-fw"></i><b>Profile</b></a></li>
                             <li><a href="../../admin/pages/accountSetting.html"><i class="fa fa-gear fa-fw"></i><b>Account Setting</b></a></li>
                             <li><a href="../../admin/pages/changePassword.html"><i class="fa fa-lock fa-fw"></i><b>Change Password</b></a></li>
-                            <li><a href="#" id="logoutId"><i class="fa fa-sign-out fa-fw"></i><b>Logout</b></a></li>
+                            <li><a href="../../../login.html" id="logoutId"><i class="fa fa-sign-out fa-fw"></i><b>Logout</b></a></li>
                         </ul>
                     </li>
                     <!-- Control Sidebar Toggle Button -->
@@ -87,7 +87,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../../admin/pages/addIncome.html"><i class="fa fa-angle-right"></i><b>Add Income</b></a></li>
+                        <li class="active"><a href="../../admin/pages/addIncome.html"><i class="fa fa-angle-right"></i><b>Add Income</b></a></li>
                         <li><a href="../../admin/pages/viewIncomes.html"><i class="active fa fa-angle-right"></i><b>All Incomes</b></a></li>
                     </ul>
                 </li>
@@ -125,11 +125,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                <b>Profile Details</b>
+                <b>Add Income</b>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i><b>Home</b></a></li>
-                <li class="active"><b>Profile Details</b></li>
+                <li class="active"><b>Add Income</b></li>
             </ol>
         </section>
 
@@ -139,102 +139,57 @@
                 <div class="col-md-12">
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h3 class="box-title"><b>Profile Details</b></h3>
-                                </div>
-                                <div class="col-md-6">
-                                    <button class="btn btn-primary btn-xs pull-right" id="edit_btn"><b>Edit Details</b></button>
-                                </div>
-                            </div>
+                            <!--<h3 class="box-title"><b>Add Income</b></h3>-->
                         </div>
                         <form class="form-horizontal">
                             <div class="box-body">
-                                <div class="row">
+                                <div class="form-group">
                                     <div class="col-md-4">
-                                        <label for="user_name"><b>Full Name :</b></label>
-                                        <input type="hidden" id="record_id">
-                                        <input type="hidden" id="user_id">
-                                        <input type="text" class="form-control" id="user_name" placeholder="Angad Kantilal Raut" disabled>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="user_mobile"><b>Mobile :</b></label>
-                                        <input type="text" class="form-control" id="user_mobile" placeholder="9766945760" disabled>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="user_email"><b>Email :</b></label>
-                                        <input type="text" class="form-control" id="user_email" placeholder="angadraut75@gmail.com" disabled>
-                                    </div>
-                                </div><br>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label for="gender_txt"><span class="required-field"></span><b>Gender :</b></label>
-                                        <input type="text" class="form-control" id="gender_txt" placeholder="Enter gender" required="required">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="qualification_txt"><span class="required-field"></span><b>Qualification :</b></label>
-                                        <input type="text" class="form-control" id="qualification_txt" placeholder="Enter qualification" required="required">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="profession_txt"><span class="required-field"></span><b>Profession :</b></label>
-                                        <input type="text" class="form-control" id="profession_txt" placeholder="Enter profession" required="required">
-                                    </div>
-                                </div><br>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label for="dob_txt"><span class="required-field"></span><b>Date Of Birth :</b></label>
-                                        <div class="input-group date" data-provide="datepicker" id="dob_date_txt">
-                                            <input type="text" class="form-control" id="dob_txt" placeholder="1 January 2024" required="required">
+                                        <label><b><span class="required-field"></span>Select Income Date : </b></label>
+                                        <div class="input-group date" data-provide="datepicker" id="income_date_txt">
+                                            <input type="text" class="form-control" id="income_date" placeholder="1 January 2024">
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-th"></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="blood_group_txt"><span class="required-field"></span><b>Blood Group :</b></label>
-                                        <input type="text" class="form-control" id="blood_group_txt" placeholder="Enter blood group" required="required">
+                                        <label><b><span class="required-field"></span>Select Income Type : </b></label>
+                                        <input type="hidden" id="income_id">
+                                        <select class="form-control" id="income_type">
+                                            <option value="select" selected>Select</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="pan_card_txt"><span class="required-field"></span><b>PAN Number :</b></label>
-                                        <input type="text" class="form-control" id="pan_card_txt" placeholder="Enter PAN Card" required="required">
+                                        <label><b><span class="required-field"></span>Income Amount : </b></label>
+                                        <input type="text" class="form-control" id="income_amount">
                                     </div>
-                                </div><br>
-                                <div class="row">
+                                </div>
+                                <div class="form-group hideshow">
                                     <div class="col-md-4">
-                                        <label for="aadhar_txt"><span class="required-field"></span><b>Aadhar Number :</b></label>
-                                        <input type="text" class="form-control" id="aadhar_txt" placeholder="Enter aadhar number" required="required">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="street_txt"><span class="required-field"></span><b>Street :</b></label>
-                                        <input type="text" class="form-control" id="street_txt" placeholder="Enter Street" required="required">
+                                        <label><b><span class="required-field"></span>Tax Amount : </b></label>
+                                        <input type="text" class="form-control" id="tax_amount" placeholder="Enter Tax Amount">
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="city_txt"><span class="required-field"></span><b>City :</b></label>
-                                        <input type="text" class="form-control" id="city_txt" placeholder="Enter city" required="required">
-                                    </div>
-                                </div><br>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label for="state_txt"><span class="required-field"></span><b>State :</b></label>
-                                        <input type="text" class="form-control" id="state_txt" placeholder="Enter state" required="required">
+                                        <label><b><span class="required-field"></span>PF Amount : </b></label>
+                                        <input type="text" class="form-control" id="pf_amount" placeholder="Enter PF Amount">
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="country_txt"><span class="required-field"></span><b>Country :</b></label>
-                                        <input type="text" class="form-control" id="country_txt" placeholder="Enter country" required="required">
+                                        <label><b><span class="required-field"></span>PT Amount : </b></label>
+                                        <input type="text" class="form-control" id="pt_amount" placeholder="Enter PT Amount">
                                     </div>
+                                </div>
+                                <div class="form-group hideshow">
                                     <div class="col-md-4">
-                                        <label for="pinCode_txt"><span class="required-field"></span><b>PinCode :</b></label>
-                                        <input type="text" class="form-control" id="pinCode_txt" placeholder="Enter pinCode" required="required">
-                                    </div>
-                                </div><br>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <button class="btn btn-success btn-sm" id="submit_btn"><b>Submit</b></button>
-                                        <button class="btn btn-danger btn-sm" id="cancel_btn"><b>Cancel</b></button>
+                                        <label><b><span class="required-field"></span>Net Salary : </b></label>
+                                        <input type="text" class="form-control" id="net_salary" disabled>
                                     </div>
                                 </div>
                             </div>
-                            <div class="box-footer"></div>
+                            <div class="box-footer">
+                                <button type="button" class="btn btn-success btn-sm" id="save_btn"><b>Save Income Details</b></button>
+                                <button type="button" class="btn btn-danger btn-sm" id="clear_btn"><b>Clear Income Details</b></button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -246,6 +201,7 @@
     <!-- /.content-wrapper -->
     <footer class="main-footer">
     </footer>
+    <!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
@@ -276,7 +232,7 @@
 <script src="../../assets/plugins/loading/loadingoverlay.min.js"></script>
 <script src="../../assets/dist/js/demo.js"></script>
 <script src="../../assets/plugins/iCheck/icheck.min.js"></script>
-<script src="../../admin/js/userProfile.js"></script>
+<script src="../../admin/js/addIncome.js"></script>
 <script>
   $(function () {
     $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
