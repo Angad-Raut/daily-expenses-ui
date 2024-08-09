@@ -50,7 +50,7 @@ function getLogin(formData){
                     localStorage.setItem("mobileNumber", data.result.userMobile);
                     localStorage.setItem("userId", data.result.userId);
                     localStorage.setItem("mail",data.result.userEmail);
-                   // window.open("../../admin/pages/dashboard.html","_self");
+                    //window.open("http://127.0.0.1:5500/static/admin/pages/dashboard.html","_self");
                     window.location.replace("http://localhost:8082/static/admin/pages/dashboard.html");
                     clearData();
                 }else{

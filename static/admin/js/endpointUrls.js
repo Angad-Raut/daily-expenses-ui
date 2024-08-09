@@ -14,7 +14,7 @@ $("#logoutId").click(function(){
                 type: "success",
                 showConfirmButton: false
             });
-            window.open("../../login.html","_self");
+            window.open("http://localhost:8082/static/login.html","_self");
           }
         },
         error: function(jqXHR, textStatus, errorThrown){

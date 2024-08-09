@@ -2,13 +2,17 @@ $(document).ready(function() {
     if (localStorage.getItem("fullName")==null && localStorage.getItem("userId")==null){
         window.open("../../login.html","_self");
     } else {
+        setDateConfiguration();
         getIncomesTypesDropDown();
-        $('#income_date_txt').datepicker({
-            format: 'dd MM yyyy',
-            endDate: '0d'
-        });
     }
 });
+
+function setDateConfiguration(){
+    $('#income_date_txt').datepicker({
+        format: 'dd MM yyyy',
+        endDate: '0d'
+    });
+}
 
 
 $('#income_type').on('change', function (e) {
