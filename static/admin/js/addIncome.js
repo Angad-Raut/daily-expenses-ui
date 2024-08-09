@@ -3,11 +3,15 @@ $(document).ready(function() {
         window.open("../../login.html","_self");
     } else {
         getIncomesTypesDropDown();
+        $('#income_date_txt').datepicker({
+            format: 'dd MM yyyy',
+            endDate: '0d'
+        });
     }
 });
 
 
-$('#incomeType').on('change', function (e) {
+$('#income_type').on('change', function (e) {
     var valueSelected = this.value;
     if (valueSelected=="SALARY") {
         $('.hideshow').show();
