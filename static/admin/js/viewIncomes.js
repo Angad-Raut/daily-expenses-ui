@@ -55,6 +55,7 @@ $("#update_btn").click(function(){
         var formData = {
             id:incomeId,
             incomeType:incomeType,
+            incomeDate:incomeDate,
             incomeAmount:incomeAmount,
             grossSalary:incomeAmount,
             tdsAmount:taxAmount,
@@ -150,8 +151,8 @@ function getAllIncomesPages(){
                     "bSortable": false
                 }, {
                     mDataProp : function(data){
-                          return '<button class="btn bg-success btn-xs" type="button" data-toggle="modal" data-target="#editIncomeModal" onclick="getIncomeItems('+data.incomeId+')"><b>View</b></button>&nbsp;&nbsp;'+
-                                 '<button class="btn bg-danger btn-xs" type="button" onclick="deleteIncome('+data.incomeId+')"><b>Delete</b></button>';
+                          return '<button class="btn bg-primary btn-xs" type="button" data-toggle="modal" data-target="#editIncomeModal" onclick="getIncomeItems('+data.incomeId+')"><b>View</b></button>&nbsp;&nbsp;'+
+                                 '<button class="btn bg-primary btn-xs" type="button" onclick="deleteIncome('+data.incomeId+')"><b>Delete</b></button>';
                     },
                     "bSortable": false
                 }],
