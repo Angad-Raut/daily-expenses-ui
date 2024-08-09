@@ -19,6 +19,8 @@ function getDashboardCount() {
                   $("#monthly_sum").text(data.result.monthlyExpenseTotal);
                   $("#yearly_sum").text(data.result.yearlyExpenseTotal);
                   $("#document_count").text(data.result.documentCount);
+                  $("#income_count").text(data.result.incomeCount);
+                  $("#total_incomes").text(data.result.incomeSum);
               }else{
                   swal("Error",data.errorMessage, "error");
               }
