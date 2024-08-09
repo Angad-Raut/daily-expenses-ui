@@ -56,6 +56,7 @@ $("#save_btn").click(function(){
         var formData = {
             id:incomeId,
             incomeType:incomeType,
+            incomeDate:incomeDate,
             incomeAmount:incomeAmount,
             grossSalary:incomeAmount,
             tdsAmount:taxAmount,
