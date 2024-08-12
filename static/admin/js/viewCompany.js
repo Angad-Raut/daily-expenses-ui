@@ -44,6 +44,9 @@ $("#save_btn").click(function(){
         flag=1;
         return false;
     }
+    if (companyid=="") {
+        companyid=null;
+    }
     if (flag==0) {
         var formData = new FormData();
         var companyLogo = $("#logo_txt")[0].files[0];
