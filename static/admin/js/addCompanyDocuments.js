@@ -85,24 +85,24 @@ function addCompanyDocument(formData) {
              console.log(result.status);
           }
     });
+}
 
-    function getDocumentTypeDropDown() {
-        $.ajax({
-            type : "GET",
-            contentType: "application/json; charset=utf-8",
-            url : REST_HOST+"/api/companyDetails/getCompanyDocumentTypeDropDown",
-            dataType : "json",
-            success : function(data) {
-                var output='';
-                var dataList = data.result;
-                for(var i in dataList){
-                    output+='<option value="'+dataList[i].entityName+'">'+dataList[i].entityValue+'</option>';
-                }
-                $('#document_type').append(output);
-            },
-            error : function(result){
-                console.log(result.status);
+function getDocumentTypeDropDown() {
+    $.ajax({
+        type : "GET",
+        contentType: "application/json; charset=utf-8",
+        url : REST_HOST+"/api/companyDetails/getCompanyDocumentTypeDropDown",
+        dataType : "json",
+        success : function(data) {
+            var output='';
+            var dataList = data.result;
+            for(var i in dataList){
+                output+='<option value="'+dataList[i].entityName+'">'+dataList[i].entityValue+'</option>';
             }
-        });
-    }
+            $('#document_type').append(output);
+        },
+        error : function(result){
+            console.log(result.status);
+        }
+    });
 }
