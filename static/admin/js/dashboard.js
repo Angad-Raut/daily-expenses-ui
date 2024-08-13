@@ -10,7 +10,7 @@ function getDashboardCount() {
     $.ajax({
             type : "GET",
             contentType: "application/json; charset=utf-8",
-            url : REST_HOST+"/api/expenses/getDashboardCount",
+            url : REST_HOST+"/api/dashboard/getDashboardCount",
             dataType : "json",
             success : function(data) {
               if(data.result!=null){
@@ -21,6 +21,7 @@ function getDashboardCount() {
                   $("#document_count").text(data.result.documentCount);
                   $("#income_count").text(data.result.incomeCount);
                   $("#total_incomes").text(data.result.incomeSum);
+                  $("#company_count").text(data.result.companyCount);
               }else{
                   swal("Error",data.errorMessage, "error");
               }

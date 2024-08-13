@@ -3,6 +3,7 @@ $(document).ready(function(){
           window.open("../../login.html","_self");
     } else {
           setAllConfiguration();
+          getDocumentTypeDropDown();
           getAllCompaniesPages();
     }
 });
@@ -83,7 +84,7 @@ function clearCompanyData(){
     $('#start_date').val("");
     $('#end_date').val("");
     $("#logo_txt").removeAttr('disabled');
-    $('#logo_image').val("");
+    $('#logo_image').attr('src', "data:image/jpg;base64,"+" ");
 }
 
 function addUpdateCompanyDetails(formData){
