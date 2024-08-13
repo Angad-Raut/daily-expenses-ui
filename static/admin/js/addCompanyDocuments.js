@@ -50,6 +50,7 @@ function clearData() {
     $("#document_type").val("");
     $("#document_txt").val("");
     $("#document_txt").removeAttr('disabled');
+    $('#document_image').attr('src', "data:image/jpg;base64,"+"");
 }
 
 function addCompanyDocument(formData) {
