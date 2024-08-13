@@ -44,13 +44,12 @@ $("#save_btn").click(function(){
         flag=1;
         return false;
     }
-    if (companyid=="") {
-        companyid=null;
-    }
     if (flag==0) {
         var formData = new FormData();
         var companyLogo = $("#logo_txt")[0].files[0];
-        formData.append("id",companyid);
+        if (companyid!="" && companyid!=null) {
+            formData.append("id",companyid);
+        }
         formData.append("companyName",companyname);
         formData.append("companyAddress",companyaddress);
         formData.append("companyLogo",companyLogo);
@@ -72,6 +71,9 @@ $("#clear_btn").click(function(){
       $("#logo_image").show();
     }
 }
+$("#add_button").click(function(){
+    clearCompanyData();
+});
 
 function clearCompanyData(){
     $("#company_id").val("");
@@ -81,6 +83,7 @@ function clearCompanyData(){
     $('#start_date').val("");
     $('#end_date').val("");
     $("#logo_txt").removeAttr('disabled');
+    $('#logo_image').val("");
 }
 
 function addUpdateCompanyDetails(formData){
