@@ -3,7 +3,8 @@ $(document).ready(function(){
           window.open("../../login.html","_self");
     } else {
         getCompanyDropDown();
-        getCompanyDocumentsPages();
+        var companyId = null;
+        getCompanyDocumentsPages(companyId);
     }
 });
 
@@ -54,7 +55,7 @@ function getCompanyDocumentsPages(companyId) {
             });
         };
         $('#companyDocumentTableId').dataTable({
-            "sAjaxSource" : REST_HOST+"/api/companyDetails/getCompanyAllDocuments",
+            "sAjaxSource" : REST_HOST+"/api/companyDocuments/getCompanyAllDocuments",
             "sAjaxDataProp" : 'result.content',
             "aoColumns" : [ {
                 mDataProp : 'srNo',

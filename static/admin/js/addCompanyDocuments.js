@@ -56,7 +56,7 @@ function clearData() {
 function addCompanyDocument(formData) {
     $.ajax({
         type : "POST",
-        url : REST_HOST+"/api/companyDetails/addDocumentByCompanyId",
+        url : REST_HOST+"/api/companyDocuments/addDocumentByCompanyId",
         dataType : "json",
         data: formData,
         enctype: 'multipart/form-data',
