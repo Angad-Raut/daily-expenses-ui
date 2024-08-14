@@ -71,7 +71,8 @@ function getCompanyDocumentsPages(companyId) {
                 "bSortable": false
             }, {
                 mDataProp : function(data){
-                      return '<button class="btn bg-primary btn-xs" type="button" onclick="downloadFile('+data.documentFile+')"><b>Download</b></button>';
+                      return '<button class="btn bg-primary btn-xs" type="button" onclick="downloadFile('+data.documentId+')"><b>Download</b></button>&nbsp;&nbsp;'+
+                             '<button class="btn bg-primary btn-xs" type="button" onclick="deleteById('+data.documentId+')"><b>Delete</b></button>';
                 },
                 "bSortable": false
             }],
@@ -84,15 +85,82 @@ function getCompanyDocumentsPages(companyId) {
     });
 }
 
-function documentFile(byteData) {
-    if(byteData!=null){
-        var link = document.createElement('a');
-        link.href = "data:application/pdf;base64,"+byteData;
-        link.download = 'Document.pdf';
-        link.dispatchEvent(new MouseEvent('click'));
-    }else{
-        swal("Error","Document cannot be donwloaed!!", "error");
-    }
+function documentFile(documentId) {
+    var formData = {"entityId":documentId};
+    $.ajax({
+        type : "POST",
+        contentType: "application/json; charset=utf-8",
+        url : REST_HOST+"/api/companyDocuments/downloadDocumentFile",
+        dataType : "json",
+        data : JSON.stringify(formData),
+        success : function(data) {
+            if(data.result!=null){
+                var contentType = data.result.contentType;
+                if (contentType=="application/pdf") {
+                    var link = document.createElement('a');
+                    link.href = "data:application/pdf;base64,"+data.result.documentFile;
+                    link.download = data.result.documentType+'.pdf';
+                    link.dispatchEvent(new MouseEvent('click'));
+                } else if (contentType=="image/jpg" || contentType=="image/jpeg") {
+                    var link = document.createElement('a');
+                    link.href = "data:image/jpg;base64,"+data.result.documentFile;
+                    link.download = data.result.documentType+'.jpg';
+                    link.dispatchEvent(new MouseEvent('click'));
+                } else {
+                    swal("Error","Invalid ContentType!!", "error");
+                }
+            }else{
+                swal("Error",data.errorMessage, "error");
+            }
+        },
+        error : function(result) {
+            console.log(result.status);
+        }
+    });
+}
+
+function deleteById(documentId) {
+    var formData = {"entityId":documentId};
+    swal({
+        title: "Are you sure?",
+        text: "Once you confirm Record will be deleted",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel please!",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+    function(isConfirm){
+        if (isConfirm) {
+            $.ajax({
+                type : "POST",
+                contentType: "application/json; charset=utf-8",
+                url : REST_HOST+"/api/companyDocuments/deleteDocumentById",
+                dataType : "json",
+                data : JSON.stringify(formData),
+                success : function(data) {
+                    if(data.result==true){
+                        swal({
+                            title: "Deleted!",
+                            text: "Company document deleted successfully!",
+                            timer: 1500,
+                            type: "success",
+                            showConfirmButton: false
+                        });
+                      }else{
+                          swal("Error",data.errorMessage, "error");
+                      }
+                },
+                error : function(result) {
+                    console.log(result.status);
+                }
+            });
+        } else {
+            swal("Cancelled", "Record is not updated it's safe", "error");
+        }
+    });
 }
 
 function getCompanyDropDown() {
