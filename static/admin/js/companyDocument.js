@@ -96,15 +96,21 @@ function documentFile(documentId) {
         success : function(data) {
             if(data.result!=null){
                 var contentType = data.result.contentType;
+                var documentName = data.result.documentType;
                 if (contentType=="application/pdf") {
                     var link = document.createElement('a');
                     link.href = "data:application/pdf;base64,"+data.result.documentFile;
-                    link.download = data.result.documentType+'.pdf';
+                    link.download = documentName+'.pdf';
                     link.dispatchEvent(new MouseEvent('click'));
-                } else if (contentType=="image/jpg" || contentType=="image/jpeg") {
+                } else if (contentType=="image/jpg") {
                     var link = document.createElement('a');
                     link.href = "data:image/jpg;base64,"+data.result.documentFile;
-                    link.download = data.result.documentType+'.jpg';
+                    link.download = documentName+'.jpg';
+                    link.dispatchEvent(new MouseEvent('click'));
+                } else if (contentType=="image/jpeg"){
+                    var link = document.createElement('a');
+                    link.href = "data:image/jpg;base64,"+data.result.documentFile;
+                    link.download = documentName+'.jpeg';
                     link.dispatchEvent(new MouseEvent('click'));
                 } else {
                     swal("Error","Invalid ContentType!!", "error");
