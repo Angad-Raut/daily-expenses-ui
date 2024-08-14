@@ -62,28 +62,24 @@ function addCompanyDocument(formData) {
         enctype: 'multipart/form-data',
         processData: false,
         contentType: false,
-          success : function(data) {
-              if(data.result==true){
-                  if (formData.companyId!=null) {
-                        swal({
-                            title: "Uploaded!",
-                            text: "Company document uploaded successfully!",
-                            timer: 1500,
-                            type: "success",
-                            showConfirmButton: false
-                        });
-                  } else {
-                        swal("Error","Error Occured!!", "error");
-                  }
-                  clearData();
-                  $("#documentModal").modal("hide");
+        success : function(data) {
+            if(data.result==true){
+                swal({
+                        title: "Uploaded!",
+                        text: "Company document uploaded successfully!",
+                        timer: 1500,
+                        type: "success",
+                        showConfirmButton: false
+                });
+                clearData();
+                $("#documentModal").modal("hide");
               }else{
                   swal("Error",data.errorMessage, "error");
               }
-          },
-          error : function(result) {
-             console.log(result.status);
-          }
+        },
+        error : function(result) {
+            console.log(result.status);
+        }
     });
 }
 
