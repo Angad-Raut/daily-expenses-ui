@@ -83,7 +83,7 @@
                                 <li><a href="../../admin/pages/viewExpenses.html"><i class="active fa fa-angle-right"></i><b>All Expenses</b></a></li>
                             </ul>
                         </li>
-                        <li><a href="../../admin/pages/externalExpenses.html"><i class="active fa fa-angle-right"></i><b>External Expenses</b></a></li>
+                        <li class="active"><a href="../../admin/pages/externalExpenses.html"><i class="active fa fa-angle-right"></i><b>External Expenses</b></a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -95,7 +95,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="../../admin/pages/addIncome.html"><i class="fa fa-angle-right"></i><b>Add Income</b></a></li>
-                        <li class="active"><a href="../../admin/pages/viewIncomes.html"><i class="active fa fa-angle-right"></i><b>All Incomes</b></a></li>
+                        <li><a href="../../admin/pages/viewIncomes.html"><i class="active fa fa-angle-right"></i><b>All Incomes</b></a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -144,11 +144,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                <b>All Incomes</b>
+                <b>External Expenses</b>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i><b>Home</b></a></li>
-                <li class="active"><b>All Incomes</b></li>
+                <li class="active"><b>External Expenses</b></li>
             </ol>
         </section>
 
@@ -157,7 +157,9 @@
             <!-- Small boxes (Stat box) -->
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h6 class="box-title"><b>All Incomes</b></h6>
+                    <h6 class="box-title">
+                        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#externalExpenseModal" id="add_btn"><b>Add External Expenses</b></button>
+                    </h6>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
@@ -167,13 +169,14 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <table id="incomeDetailsTableId" class="table table-bordered table-striped">
+                            <table id="externalExpensesTableId" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>Sr.No</th>
-                                    <th>Income Type</th>
-                                    <th>Income Date</th>
-                                    <th>Income Amount</th>
+                                    <th>Person Name</th>
+                                    <th>Remark</th>
+                                    <th>Amount</th>
+                                    <th>Given Date</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -184,95 +187,61 @@
             </div>
             <!-- /Small boxes (Stat box) -->
             <!-- modal start -->
-            <div class="modal fade" id="editIncomeModal">
+            <div class="modal fade" id="externalExpenseModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title"><b>Income Details</b></h4>
+                            <h4 class="modal-title"><b>External Expense Details</b></h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <button type="button" class="btn btn-primary btn-sm" id="edit_btn"><b>Edit Details</b></button>
+                                    <label><b><span class="required-field"></span>Amount :</b></label>
                                 </div>
-                                <div class="col-md-8"></div>
+                                <div class="col-md-6">
+                                    <input type="hidden" id="record_id">
+                                    <input type="text" class="form-control" id="amount_txt" placeholder="Enter amount">
+                                </div>
+                                <div class="col-md-2"></div>
                             </div><br>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Select Income Date :</b></label>
+                                    <label><b>Person Name :</b></label>
                                 </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="person_txt" placeholder="Enter person name">
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div><br>
+                            <div class="row">
                                 <div class="col-md-4">
-                                    <div class="input-group date" data-provide="datepicker" id="income_date_txt">
-                                        <input type="text" class="form-control" id="income_date" placeholder="1 January 2024">
+                                    <label><b><span class="required-field"></span>Remark :</b></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="remark_txt" placeholder="Enter remark">
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label><b>Select Given Date :</b></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group date" data-provide="datepicker" id="given_date_txt">
+                                        <input type="text" class="form-control" id="given_date" placeholder="1 January 2024">
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Select Income Type : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="hidden" id="income_id">
-                                    <select class="form-control" id="income_type">
-                                        <option value="select" selected>Select</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Income Amount : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="income_amount">
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div><br>
-                            <div class="row hideshow">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Tax Amount : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="tax_amount" placeholder="Enter Tax Amount">
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div><br>
-                            <div class="row hideshow">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>PF Amount : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="pf_amount" placeholder="Enter PF Amount">
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div><br>
-                            <div class="row hideshow">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>PT Amount : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="pt_amount" placeholder="Enter PT Amount">
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div><br>
-                            <div class="row hideshow">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Net Salary : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="net_salary" disabled>
-                                </div>
+                                <div class="col-md-2"></div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success btn-sm" id="update_btn"><b>Update Income Details</b></button>
-                            <button type="button" class="btn btn-danger btn-sm" id="clear_btn"><b>Clear Income Details</b></button>
+                            <button type="button" class="btn btn-success btn-sm" id="save_btn"><b>Save Details</b></button>
+                            <button type="button" class="btn btn-danger btn-sm" id="clear_btn"><b>Clear Details</b></button>
                         </div>
                     </div>
                 </div>
@@ -333,6 +302,6 @@
 <script src="../../assets/dist/js/demo.js"></script>
 <script src="../../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="../../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="../../admin/js/viewIncomes.js"></script>
+<script src="../../admin/js/externalExpenses.js"></script>
 </body>
 </html>
