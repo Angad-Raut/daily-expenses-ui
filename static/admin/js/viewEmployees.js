@@ -95,7 +95,7 @@ $("#add_btn").click(function(){
 });
 
 function removeData() {
-    $("emp_id").val("");
+    $("#emp_id").val("");
     $("#company_id").va("");
 }
 function clearData() {
