@@ -95,7 +95,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="../../admin/pages/addIncome.html"><i class="fa fa-angle-right"></i><b>Add Income</b></a></li>
-                        <li class="active"><a href="../../admin/pages/viewIncomes.html"><i class="active fa fa-angle-right"></i><b>All Incomes</b></a></li>
+                        <li><a href="../../admin/pages/viewIncomes.html"><i class="active fa fa-angle-right"></i><b>All Incomes</b></a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -142,7 +142,7 @@
                             <a href="#"><i class="fa fa fa-angle-right"></i> <span><b>Project Details</b></span></a>
                             <ul class="treeview-menu">
                                 <li><a href="../../admin/pages/addProjects.html"><i class="fa fa fa-angle-right"></i><b>Add Project</b></a></li>
-                                <li><a href="../../admin/pages/viewProjects.html"><i class="fa fa fa-angle-right"></i><b>View Projects</b></a></li>
+                                <li class="active"><a href="../../admin/pages/viewProjects.html"><i class="fa fa fa-angle-right"></i><b>View Projects</b></a></li>
                             </ul>
                         </li>
                         <li><a href="../../admin/pages/technoStacks.html"><i class="fa fa-angle-right"></i><b>TechnoStack Details</b></a></li>
@@ -170,11 +170,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                <b>All Incomes</b>
+                <b>All Projects</b>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i><b>Home</b></a></li>
-                <li class="active"><b>All Incomes</b></li>
+                <li class="active"><b>All Projects</b></li>
             </ol>
         </section>
 
@@ -183,7 +183,7 @@
             <!-- Small boxes (Stat box) -->
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h6 class="box-title"><b>All Incomes</b></h6>
+                    <h6 class="box-title"><b>All Projects</b></h6>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
@@ -192,14 +192,27 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="row">
+                        <div class="col-md-2">
+                            <label for="emp_id"><span class="required-field"></span><b>Select Employee</b></label>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" id="emp_id">
+                                <option value="">All</option>
+                            </select> 
+                        </div>
+                        <div class="col-md-7"></div>
+                    </div><br>
+                    <div class="row">
                         <div class="col-md-12">
-                            <table id="incomeDetailsTableId" class="table table-bordered table-striped">
+                            <table id="projectsTableId" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>Sr.No</th>
-                                    <th>Income Type</th>
-                                    <th>Income Date</th>
-                                    <th>Income Amount</th>
+                                    <th>Employee Name</th>
+                                    <th>Company Name</th>
+                                    <th>Project Name</th>
+                                    <th>Job Title</th>
+                                    <th>Team Size</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -210,99 +223,109 @@
             </div>
             <!-- /Small boxes (Stat box) -->
             <!-- modal start -->
-            <div class="modal fade" id="editIncomeModal">
+            <div class="modal fade" id="editProjectModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title"><b>Income Details</b></h4>
+                            <h4 class="modal-title"><b>View Project Details</b></h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <button type="button" class="btn btn-primary btn-sm" id="edit_btn"><b>Edit Details</b></button>
-                                </div>
-                                <div class="col-md-8"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Select Income Date :</b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="input-group date" data-provide="datepicker" id="income_date_txt">
-                                        <input type="text" class="form-control" id="income_date" placeholder="1 January 2024">
-                                        <div class="input-group-addon">
-                                            <span class="glyphicon glyphicon-th"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Select Income Type : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="hidden" id="income_id">
-                                    <select class="form-control" id="income_type">
-                                        <option value="select" selected>Select</option>
+                                    <label for="employee_id"><span class="required-field"></span><b>Selct Employee :</b></label>
+                                    <input type="hidden" id="project_id">
+                                    <select class="form-control" id="employee_id">
+                                        <option value="">Select</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <label for="company_id"><span class="required-field"></span><b>Select Company :</b></label>
+                                    <select class="form-control" id="company_id">
+                                        <option value="">Select</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="project_name"><span class="required-field"></span><b>Project Name :</b></label>
+                                    <input type="text" class="form-control" id="project_name" placeholder="Enter project name">
+                                </div>
                             </div><br>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Income Amount : </b></label>
+                                    <label for="job_title"><span class="required-field"></span><b>Job Title :</b></label>
+                                    <input type="text" class="form-control" id="job_title" placeholder="Enter job title">
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" id="income_amount">
+                                    <label for="team_size"><span class="required-field"></span><b>Team Size :</b></label>
+                                    <input type="text" class="form-control" id="team_size" placeholder="Enter team size">
                                 </div>
-                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <label for="project_domain"><span class="required-field"></span><b>Project Domain :</b></label>
+                                    <input type="text" class="form-control" id="project_domain" placeholder="Enter project domain">
+                                </div>
                             </div><br>
-                            <div class="row hideshow">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Tax Amount : </b></label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="project_desc"><span class="required-field"></span><b>Project Description :</b></label>
+                                    <textarea class="form-control" cols="3" rows="4" id="project_desc" placeholder="Enter project description"></textarea>
                                 </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="tax_amount" placeholder="Enter Tax Amount">
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div><br>
-                            <div class="row hideshow">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>PF Amount : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="pf_amount" placeholder="Enter PF Amount">
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div><br>
-                            <div class="row hideshow">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>PT Amount : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="pt_amount" placeholder="Enter PT Amount">
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div><br>
-                            <div class="row hideshow">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Net Salary : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="net_salary" disabled>
+                                <div class="col-md-6">
+                                    <label for="role_responsibility"><span class="required-field"></span><b>Role & Responsibility :</b></label>
+                                    <textarea class="form-control" cols="3" rows="4" id="role_responsibility" placeholder="Enter role & responsibility"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success btn-sm" id="update_btn"><b>Update Income Details</b></button>
-                            <button type="button" class="btn btn-danger btn-sm" id="clear_btn"><b>Clear Income Details</b></button>
+                            <button type="button" class="btn btn-success btn-sm pull-left" id="save_btn"><b>Update Details</b></button>
+                            <button type="button" class="btn btn-danger btn-sm pull-left" data-dismiss="modal" id="closeId"><b>Cancel</b></button>
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
+            <!-- /.modal -->
+            <!-- modal start -->
+            <div class="modal fade" id="technologyModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title"><b>View Project Technologies</b></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="tech_name"><span class="required-field"></span><b>Technology Name :</b></label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="hidden" id="project_id">
+                                    <input type="text" class="form-control" id="tech_name" placeholder="Enter technology">
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary btn-sm" id="tech_btn"><b>Submit</b></button>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table id="technologyTableId" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Sr.No</th>
+                                            <th>Technology Name</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger btn-sm pull-left" data-dismiss="modal" id="claerI_btn"><b>Cancel</b></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal --> 
         </section>
         <!-- /.content -->
     </div>
@@ -359,6 +382,7 @@
 <script src="../../assets/dist/js/demo.js"></script>
 <script src="../../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="../../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="../../admin/js/viewIncomes.js"></script>
+<script src="../../admin/js/viewProjectsService.js"></script>
+<script src="../../admin/js/viewProjects.js"></script>
 </body>
 </html>

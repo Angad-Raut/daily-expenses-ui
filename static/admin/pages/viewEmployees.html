@@ -95,7 +95,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="../../admin/pages/addIncome.html"><i class="fa fa-angle-right"></i><b>Add Income</b></a></li>
-                        <li class="active"><a href="../../admin/pages/viewIncomes.html"><i class="active fa fa-angle-right"></i><b>All Incomes</b></a></li>
+                        <li><a href="../../admin/pages/viewIncomes.html"><i class="active fa fa-angle-right"></i><b>All Incomes</b></a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -134,7 +134,7 @@
                             <a href="#"><i class="fa fa fa-angle-right"></i> <span><b>Employee Details</b></span></a>
                             <ul class="treeview-menu">
                                 <li><a href="../../admin/pages/employeeDetails.html"><i class="fa fa fa-angle-right"></i><b>Add Employee</b></a></li>
-                                <li><a href="../../admin/pages/viewEmployees.html"><i class="fa fa fa-angle-right"></i><b>View Employee</b></a></li>
+                                <li class="active"><a href="../../admin/pages/viewEmployees.html"><i class="fa fa fa-angle-right"></i><b>View Employee</b></a></li>
                             </ul>
                         </li>
                         <li><a href="../../admin/pages/viewEducations.html"><i class="fa fa-angle-right"></i><b>Education Details</b></a></li>
@@ -170,11 +170,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                <b>All Incomes</b>
+                <b>All Employees</b>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i><b>Home</b></a></li>
-                <li class="active"><b>All Incomes</b></li>
+                <li class="active"><b>All Employees</b></li>
             </ol>
         </section>
 
@@ -183,7 +183,7 @@
             <!-- Small boxes (Stat box) -->
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h6 class="box-title"><b>All Incomes</b></h6>
+                    <h6 class="box-title"><b>All Employees</b></h6>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
@@ -193,13 +193,14 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <table id="incomeDetailsTableId" class="table table-bordered table-striped">
+                            <table id="employeeTableId" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>Sr.No</th>
-                                    <th>Income Type</th>
-                                    <th>Income Date</th>
-                                    <th>Income Amount</th>
+                                    <th>Employee Name</th>
+                                    <th>Employee Mobile</th>
+                                    <th>Employee Email</th>
+                                    <th>Experience</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -210,99 +211,109 @@
             </div>
             <!-- /Small boxes (Stat box) -->
             <!-- modal start -->
-            <div class="modal fade" id="editIncomeModal">
+            <div class="modal fade" id="editEmployee-modal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title"><b>Income Details</b></h4>
+                            <h4 class="modal-title"><b>View Employee Details</b></h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <button type="button" class="btn btn-primary btn-sm" id="edit_btn"><b>Edit Details</b></button>
+                                    <label for="employee_name"><span class="required-field"></span><b>Employee Name :</b></label>
+                                    <input type="hidden" id="employee_id">
+                                    <input type="text" class="form-control" id="employee_name" placeholder="Enter employee name">
                                 </div>
-                                <div class="col-md-8"></div>
+                                <div class="col-md-4">
+                                    <label for="employee_mobile"><span class="required-field"></span><b>Employee Mobile :</b></label>
+                                    <input type="text" class="form-control" id="employee_mobile" placeholder="Enter employee mobile">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="employee_email"><span class="required-field"></span><b>Employee Email :</b></label>
+                                    <input type="text" class="form-control" id="employee_email" placeholder="Enter employee email">
+                                </div>
                             </div><br>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Select Income Date :</b></label>
+                                    <label for="linked_in_url"><b>LinkedIn URL :</b></label>
+                                    <input type="text" class="form-control" id="linked_in_url" placeholder="Enter linkedIn url">
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="input-group date" data-provide="datepicker" id="income_date_txt">
-                                        <input type="text" class="form-control" id="income_date" placeholder="1 January 2024">
-                                        <div class="input-group-addon">
-                                            <span class="glyphicon glyphicon-th"></span>
-                                        </div>
-                                    </div>
+                                    <label for="git_hub_url"><b>GitHub URL :</b></label>
+                                    <input type="text" class="form-control" id="git_hub_url" placeholder="Enter github url">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="total_experience"><span class="required-field"></span><b>Experience :</b></label>
+                                    <input type="text" class="form-control" id="total_experience" placeholder="Enter total experience" required="required">
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="profile_summary_txt"><span class="required-field"></span><b>Profile Summary :</b></label>
+                                    <textarea class="form-control" cols="3" rows="3" id="profile_summary_txt" placeholder="Enter profile summary"></textarea>
                                 </div>
                                 <div class="col-md-4"></div>
-                            </div><br>
+                                <div class="col-md-4"></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success btn-sm pull-left" id="save_btn"><b>Submit</b></button>
+                            <button type="button" class="btn btn-danger btn-sm pull-left" data-dismiss="modal" id="closeId"><b>Cancel</b></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal -->
+            <!-- modal start -->
+            <div class="modal fade" id="company-modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title"><b>Add Employee Company</b></h4>
+                        </div>
+                        <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Select Income Type : </b></label>
+                                    <label for="compnay_id"><span class="required-field"></span><b>Select Company :</b></label>
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="hidden" id="income_id">
-                                    <select class="form-control" id="income_type">
-                                        <option value="select" selected>Select</option>
+                                    <input type="hidden" id="emp_id">
+                                    <select class="form-control" id="compnay_id">
+                                        <option value="">Select</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-primary btn-xs" id="add_btn"><b>Add Company</b></button>
+                                    <button class="btn btn-primary btn-xs" id="remove_btn"><b>Cancel</b></button>
+                                </div>
                             </div><br>
                             <div class="row">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Income Amount : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="income_amount">
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div><br>
-                            <div class="row hideshow">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Tax Amount : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="tax_amount" placeholder="Enter Tax Amount">
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div><br>
-                            <div class="row hideshow">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>PF Amount : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="pf_amount" placeholder="Enter PF Amount">
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div><br>
-                            <div class="row hideshow">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>PT Amount : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="pt_amount" placeholder="Enter PT Amount">
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div><br>
-                            <div class="row hideshow">
-                                <div class="col-md-4">
-                                    <label><b><span class="required-field"></span>Net Salary : </b></label>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" id="net_salary" disabled>
+                                <div class="col-md-12">
+                                    <table id="companyTableId" class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Sr.No</th>
+                                            <th>Company Name</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Experience</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success btn-sm" id="update_btn"><b>Update Income Details</b></button>
-                            <button type="button" class="btn btn-danger btn-sm" id="clear_btn"><b>Clear Income Details</b></button>
+                            <button type="button" class="btn btn-danger btn-sm pull-left" data-dismiss="modal" id="claerI_btn"><b>Cancel</b></button>
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
+            <!-- /.modal --> 
         </section>
         <!-- /.content -->
     </div>
@@ -359,6 +370,6 @@
 <script src="../../assets/dist/js/demo.js"></script>
 <script src="../../assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="../../assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="../../admin/js/viewIncomes.js"></script>
+<script src="../../admin/js/viewEmployees.js"></script>
 </body>
 </html>

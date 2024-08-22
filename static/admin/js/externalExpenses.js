@@ -77,6 +77,7 @@ function addUpdateExternalExpenseDetails(formData) {
                         });
                   }
                   clearData();
+                  $("#externalExpenseModal").modal("hide");
                   getAllExternalExpensesPages();
       		  }else{
       			  swal("Error",data.errorMessage, "error");
