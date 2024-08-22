@@ -66,7 +66,7 @@ $("#company_id").on('change',function(e){
 });
 
 $("#remove_btn").click(function(){
-    $("#company_id").va("");
+    $("#company_id").val("");
     getCompanyDropDown();
 });
 
@@ -96,7 +96,7 @@ $("#add_btn").click(function(){
 
 function removeData() {
     $("#emp_id").val("");
-    $("#company_id").va("");
+    $("#company_id").val("");
 }
 function clearData() {
     $("#employee_id").val("");
