@@ -60,11 +60,6 @@ $("#closeId").click(function(){
     clearData();
 });
 
-$("#company_id").on('change',function(e){
-     var selectedValue=this.value;
-     $("#company_id").val(selectedValue);
-});
-
 $("#remove_btn").click(function(){
     $("#company_id").val("");
     getCompanyDropDown();
