@@ -315,7 +315,7 @@ function getCompanyDropDown() {
             for(var i in dataList){
                 output+='<option value="'+dataList[i].entityId+'">'+dataList[i].entityValue+'</option>';
             }
-            $('#compnay_id').append(output);
+            $('#company_id').append(output);
         },
         error : function(result){
             console.log(result.status);
