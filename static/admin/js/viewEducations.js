@@ -9,7 +9,6 @@ $(document).ready(function(){
 });
 
 $("#add_button").click(function(){
-    getEmployeeDropDown();
     configureDates();
 });
 

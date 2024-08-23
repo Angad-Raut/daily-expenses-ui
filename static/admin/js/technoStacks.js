@@ -13,10 +13,6 @@ $('#emp_id').on('change', function (e) {
     getAllTechnostackPages(valueSelected);
 });
 
-$("#add_button").click(function(){
-    getEmployeeDropDown();
-});
-
 $("#btn_txt").click(function(){
     var tech_id = $("#tach_Id").val();
     var employee_id = $("#employee_id").val();
