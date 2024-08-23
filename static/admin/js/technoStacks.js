@@ -1,25 +1,36 @@
-var dataList;
 $(document).ready(function() {
     if (localStorage.getItem("fullName")==null && localStorage.getItem("userId")==null){
         window.open("../../login.html","_self");
     } else {
         getEmployeeDropDown();
-        setEmployeeDropDown();
         var employeeId = null;
         getAllTechnostackPages(employeeId);
     }
 });
 
-/*$("#add_button").click(function(){
+$("#add_button").click(function(){
     setEmployeeDropDown();
-});*/
+});
 
 function setEmployeeDropDown() {
-    var output='';
-    for(var i in dataList){
-        output+='<option value="'+dataList[i].entityId+'">'+dataList[i].entityValue+'</option>';
-    }
-    $('#employee_id').append(output);
+    $('#employee_id').val("");
+    $.ajax({
+        type : "GET",
+        contentType: "application/json; charset=utf-8",
+        url : REST_HOST+"/api/employeeDetails/getEmployeeDropDown",
+        dataType : "json",
+        success : function(data) {
+            var output='';
+            var dataList = data.result;
+            for(var i in dataList){
+                output+='<option value="'+dataList[i].entityId+'">'+dataList[i].entityValue+'</option>';
+            }
+            $('#employee_id').append(output);
+        },
+        error : function(result){
+            console.log(result.status);
+        }
+    });
 }
 
 $('#emp_id').on('change', function (e) {
@@ -117,7 +128,7 @@ function getEmployeeDropDown() {
         dataType : "json",
         success : function(data) {
             var output='';
-            dataList = data.result;
+            var dataList = data.result;
             for(var i in dataList){
                 output+='<option value="'+dataList[i].entityId+'">'+dataList[i].entityValue+'</option>';
             }
@@ -209,7 +220,7 @@ function getTechnoStackById(stackId) {
         data : JSON.stringify(formData),
         success : function(data) {
            if(data.result!=null){
-                //setEmployeeDropDown();
+                setEmployeeDropDown();
                 $("#tach_Id").val(data.result.id);
                 $("#employee_id").val(data.result.employeeId);
                 $("#stack_name").val(data.result.stackName);
