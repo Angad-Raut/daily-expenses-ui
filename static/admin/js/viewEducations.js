@@ -46,7 +46,7 @@ $("#btn_txt").click(function(){
     var university = $("#university_name").val();
     var percentage = $("#percentage_txt").val();
     var start_date = $("#start_date").val();
-    var end_date = $("#end_date").va();
+    var end_date = $("#end_date").val();
     var flag = 0;
     if (employee_id=="" || employee_id==null || employee_id=="Select") {
         swal("Warning!", "Please select valid employee!", "warning");
@@ -103,7 +103,7 @@ function claerData() {
     $("#university_name").val("");
     $("#percentage_txt").val("");
     $("#start_date").val("");
-    $("#end_date").va("");
+    $("#end_date").val("");
 }
 
 function configureDates(){
@@ -267,7 +267,7 @@ function getEducationById(id) {
                 $("#university_name").val(data.result.universityName);
                 $("#percentage_txt").val(data.result.percentage);
                 $("#start_date").val(data.result.startDate);
-                $("#end_date").va(data.result.endDate);
+                $("#end_date").val(data.result.endDate);
                 $("#educationModal").modal("show");
            }else{
                 swal("Error",data.errorMessage, "error");
