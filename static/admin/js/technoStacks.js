@@ -4,14 +4,15 @@ $(document).ready(function() {
         window.open("../../login.html","_self");
     } else {
         getEmployeeDropDown();
+        setEmployeeDropDown();
         var employeeId = null;
         getAllTechnostackPages(employeeId);
     }
 });
 
-$("#add_button").click(function(){
+/*$("#add_button").click(function(){
     setEmployeeDropDown();
-});
+});*/
 
 function setEmployeeDropDown() {
     var output='';
@@ -208,7 +209,7 @@ function getTechnoStackById(stackId) {
         data : JSON.stringify(formData),
         success : function(data) {
            if(data.result!=null){
-                setEmployeeDropDown();
+                //setEmployeeDropDown();
                 $("#tach_Id").val(data.result.id);
                 $("#employee_id").val(data.result.employeeId);
                 $("#stack_name").val(data.result.stackName);

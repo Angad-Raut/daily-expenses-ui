@@ -4,6 +4,7 @@ $(document).ready(function(){
         window.open("../../login.html","_self");
     } else {
         getEmployeeDropDown();
+        setEmployeeDropDown();
         var employeeId = null;
         getAllEducationPages(employeeId);
     }
@@ -11,7 +12,6 @@ $(document).ready(function(){
 
 $("#add_button").click(function(){
     configureDates();
-    setEmployeeDropDown();
 });
 
 function setEmployeeDropDown(){
@@ -248,7 +248,7 @@ function getEducationById(id) {
         data : JSON.stringify(formData),
         success : function(data) {
            if(data.result!=null){
-                setEmployeeDropDown();
+                //setEmployeeDropDown();
                 $("#education_Id").val(data.result.id);
                 $("#employee_id").val(data.result.employeeId);
                 $("#degree_name").val(data.result.degreeName);

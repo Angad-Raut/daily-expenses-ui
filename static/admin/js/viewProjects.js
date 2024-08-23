@@ -4,6 +4,7 @@ $(document).ready(function(){
           window.open("../../login.html","_self");
     } else {
         getEmployeeDropDown();
+        setEmployeeDropDown();
         var employeeId = null;
         getAllProjectPages(employeeId);
     }
@@ -129,7 +130,7 @@ function getProjectById(projectId) {
         data : JSON.stringify(formData),
         success : function(data) {
            if(data.result!=null){
-                setEmployeeDropDown();
+                //setEmployeeDropDown();
                 $("#project_id").val(data.result.id);
                 $("#employee_id").val(data.result.employeeId);
                 $("#company_id").val(data.result.companyId);
