@@ -78,6 +78,9 @@ $("#btn_txt").click(function(){
         flag=1;
         return false;
     }
+    if (education_id==""){
+        education_id=null;
+    }
     if (flag==0) {
         var formData = {
             id:education_id,
@@ -142,7 +145,7 @@ function addUpdateEducationDetails(formData) {
                     });
                 }
                 clearData();
-                getAllEducationPages();
+                getAllEducationPages(null);
                 $("#educationModal").modal("hide");
             }else{
                 swal("Error",data.errorMessage, "error");
