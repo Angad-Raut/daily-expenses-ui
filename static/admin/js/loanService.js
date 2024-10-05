@@ -341,6 +341,7 @@ function getEMIById(emiId) {
                 $("#emi_id").val(data.result.emiId);
                 $("#emi_amount").val(data.result.emiAmount);
                 $("#payment_mode").val(data.result.paymentMode);
+                $("#emi_date").val(data.result.emiDate);
                 $("#emiModal").modal("show");
            }else{
                 swal("Error",data.errorMessage, "error");

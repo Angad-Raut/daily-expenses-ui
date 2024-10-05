@@ -18,6 +18,9 @@ function setDateConfiguration() {
          format: 'dd MM yyyy',
          startDate: '0d'
     });
+    $('#emi_date_txt').datepicker({
+        format: 'dd MM yyyy'
+    });
 }
 
 function setLoanId(loanId){
@@ -78,6 +81,7 @@ $("#emi_btn").click(function(){
     var emi_id = $("#emi_id").val();
     var emi_amount = $("#emi_amount").val();
     var payment_mode = $("#payment_mode").val();
+    var emi_date = $("#emi_date").val();
     var flag = 0;
     if (emi_amount=="" || emi_amount==null) {
         swal("Warning!", "Please enter emi amount!", "warning");
@@ -100,7 +104,8 @@ $("#emi_btn").click(function(){
             loanId:loan_id,
             emiId:emi_id,
             emiAmount:emi_amount,
-            paymentMode:payment_mode
+            paymentMode:payment_mode,
+            emiDate:emi_date
         };
         insertUpdateEMIDetails(formData);
     }
@@ -128,4 +133,5 @@ function cleatEMIData(){
     $("#emi_id").val("");
     $("#emi_amount").val("");
     $("#payment_mode").val("");
+    $("#emi_date").val("");
 }
