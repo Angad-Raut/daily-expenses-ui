@@ -20,6 +20,10 @@ function setDateConfiguration() {
     });
 }
 
+function setLoanId(loanId){
+    $("#loan_id").val(loanId);
+}
+
 $("#save_btn").click(function(){
     var loan_id = $("#loan_id").val();
     var loan_type = $("#loan_type").val();

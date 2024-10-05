@@ -186,7 +186,7 @@ function getAllLoansPages(){
                         '<button type="button" class="btn btn-primary btn-xs" onclick="updateStatus('+data.id+');"><b>Close</b></button>';
                     } else {
                         return '<button type="button" class="btn btn-primary btn-xs" onclick="getLoanDetailsById('+data.id+');"><b>Edit</b></button>&nbsp;&nbsp;'+
-                        '<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#emiModal"><b>Add EMI</b></button>&nbsp;&nbsp;'+
+                        '<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#emiModal" onclick="setLoanId('+data.id+');"><b>Add EMI</b></button>&nbsp;&nbsp;'+
                         '<button type="button" class="btn btn-primary btn-xs" onclick="getAllEMIByLoanId('+data.id+');"><b>View EMI</b></button>&nbsp;&nbsp;'+
                         '<button type="button" class="btn btn-primary btn-xs" onclick="updateStatus('+data.id+');"><b>Close</b></button>';
                     }
