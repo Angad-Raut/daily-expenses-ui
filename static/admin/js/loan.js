@@ -24,7 +24,9 @@ function setDateConfiguration() {
 }
 
 function setLoanId(loanId){
+    alert("LoanId:"+loanId);
     $("#loan_id").val(loanId);
+    $("#emiModal").modal("show");
 }
 
 $("#save_btn").click(function(){
