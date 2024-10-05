@@ -182,13 +182,13 @@ function getAllLoansPages(){
             }, {
                 mDataProp : function(data){
                     if (data.loanType=="Credit Card") {
-                        return '<button type="button" class="btn btn-primary btn-xs" onclick="getLoanDetailsById('+data.id+');"><b>Edit</b></button>&nbsp;&nbsp;'+
-                        '<button type="button" class="btn btn-primary btn-xs" onclick="updateStatus('+data.id+');"><b>Close</b></button>';
+                        return '<button type="button" class="btn btn-primary btn-xs" onclick="getLoanDetailsById('+data.loanId+');"><b>Edit</b></button>&nbsp;&nbsp;'+
+                        '<button type="button" class="btn btn-primary btn-xs" onclick="updateStatus('+data.loanId+');"><b>Close</b></button>';
                     } else {
-                        return '<button type="button" class="btn btn-primary btn-xs" onclick="getLoanDetailsById('+data.id+');"><b>Edit</b></button>&nbsp;&nbsp;'+
-                        '<button type="button" class="btn btn-primary btn-xs" onclick="setLoanId('+data.id+');"><b>Add EMI</b></button>&nbsp;&nbsp;'+
-                        '<button type="button" class="btn btn-primary btn-xs" onclick="getAllEMIByLoanId('+data.id+');"><b>View EMI</b></button>&nbsp;&nbsp;'+
-                        '<button type="button" class="btn btn-primary btn-xs" onclick="updateStatus('+data.id+');"><b>Close</b></button>';
+                        return '<button type="button" class="btn btn-primary btn-xs" onclick="getLoanDetailsById('+data.loanId+');"><b>Edit</b></button>&nbsp;&nbsp;'+
+                        '<button type="button" class="btn btn-primary btn-xs" onclick="setLoanId('+data.loanId+');"><b>Add EMI</b></button>&nbsp;&nbsp;'+
+                        '<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#viewModal" onclick="getAllEMIByLoanId('+data.loanId+');"><b>View EMI</b></button>&nbsp;&nbsp;'+
+                        '<button type="button" class="btn btn-primary btn-xs" onclick="updateStatus('+data.loanId+');"><b>Close</b></button>';
                     }
                 },
                 "bSortable": false
@@ -290,7 +290,6 @@ function getAllEMIByLoanId(loanId) {
                     data.iTotalRecords = data.result.totalElements;
                     data.iTotalDisplayRecords = data.result.totalElements;
                     fnCallback(data);
-                    $("#viewModal").modal("show");
                 },
                 error : function(result) {
                     console.log(result.status);
